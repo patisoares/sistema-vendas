@@ -13,13 +13,14 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>CPF</th>
+                    <th>Ações</th>
                 </thead>
                 <tbody>
-                    {% for clientes in cliente %} 
+                    {% for cliente in clientes %} 
                         <tr>
-                            <td>{{ clientes.id }}</td>
-                            <td>{{ clientes.nome }}</td>
-                            <td>{{ clientes.cpf }}</td>
+                            <td>{{ cliente.id }}</td>
+                            <td>{{ cliente.nome }}</td>
+                            <td>{{ cliente.cpf }}</td>
                             <td>
                                 <a href="#">Editar</a>
                                 <a href="#">Excluir</a>
