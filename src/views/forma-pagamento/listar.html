@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% block main %}
+
+<section class="card m-5">
+    <header class="card-header">
+        <h3>Forma de Pagamento</h3>
+    </header>
+   <div class="card-body ">
+       <a href="/forma-pagamento/adicionar" class="btn btn-primary">Adicionar</a>
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </thead>
+        <tbody>
+            {% for pagamento in pagamentos %}
+                <tr>
+                    <td>{{ pagamento.id}}</td>
+                    <td>{{ pagamento.descricao}}</td>
+                    <td>
+                        <a href="#">Editar</a>
+                        <a href="#">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   </div>
+</section>
+
+{% endblock %}

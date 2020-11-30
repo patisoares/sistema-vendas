@@ -8,8 +8,8 @@
     "dev": "nodemon -e js,html --ignore node_modules --ignore public/libs"
   },
   "keywords": [],
-  "author": "Caio Maqueise Alécio Pinheiro",
-  "license": "MIT",
+  "author": "Patricia A Soares",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "nunjucks": "^3.2.2",

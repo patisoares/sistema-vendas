@@ -29,4 +29,18 @@ let clientes = [
         cpf:"06122542525"
     }
 ]
-module.exports = {categoriasDeProduto,clientes}
+let formaDePagamento = [
+    {
+        id:1,
+        descricao:"Dinheiro"
+    },
+    {
+        id:2,
+        descricao:"Cartão de Débito"
+    },
+    {
+        id:3,
+        descricao:"Cartão de Crédito"
+    }
+]
+module.exports = {categoriasDeProduto,clientes, formaDePagamento}
