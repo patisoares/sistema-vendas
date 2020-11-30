@@ -2,7 +2,7 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 const {db} = require('./src/db/connection')
 
-/*db.queru('SELECT * FROM cliente', (err.result)=>{
+/*db.query('SELECT * FROM cliente', (err.result)=>{
   if (err){
     console.log(`Houve um erro ao conectar: ${err}`)
   }
@@ -19,6 +19,8 @@ nunjucks.configure('./src/views', {
   autoescape: true,
   express: app
 }); 
+
+//rotas 
 
 app.get('/',(req,res)=>{
   res.render('index')
@@ -38,10 +40,8 @@ app.get('/cliente/listar',(req,res)=>{
     if(err){
       console.log(`Houve um erro ao listar os clientes: ${err}`)
     }
-  
-  res.render('cliente/listar',{clientes:result.rows})
-})
-
+    res.render('cliente/listar',{clientes:result.rows})
+  })
 })
 
 app.get('/cliente/adicionar',(req,res)=>{
@@ -56,9 +56,35 @@ app.post('/cliente/salvar',(req,res)=>{
   db.query(query,(err,result)=>{
     console.log(result)
   })
-  
   res.redirect('/cliente/listar')
 })
+
+//rotas para forma de pagamento
+app.get('/forma-pagamento/listar',(req,res)=>{
+  db.query('SELECT * FROM forma_pagamento',(err,result)=>{
+    if (err){
+      console.log(`Houve um erro ao listar as formas de pagemnto: ${err}`)
+    }
+   res.render('forma-pagamento/listar',{pagamentos:result.rows})
+  })
+
+})
+app.get('/forma-pagamento/adicionar',(req,res)=>{
+    res.render('forma-pagamento/adicionar')
+})
+
+app.post('/forma-pagamento/salvar',(req,res)=>{
+  const query = {
+    text: 'INSERT INTO forma_pagamento(descricao) VALUES ($1)',
+    values:[req.body.descricao]
+  }
+  db.query(query,(err, result)=>{
+    console.log(result)
+  })
+  res.redirect('/forma-pagamento/listar')
+})
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
