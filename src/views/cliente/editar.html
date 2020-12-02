@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+
+{% block main %}
+
+    <section class="card m-5">
+        <header class="card-header">
+            <h3>Adicionar Cliente</h3>
+        </header>
+        <div class="card-body">
+            <form action="/cliente/atualizar" method="post"> 
+                <input type="hidden" name="id" value={{cliente.id}}>
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="nome" value="{{cliente.nome}}" class="form-control">
+                    <label>CPF</label>
+                    <input type="text" name="cpf" value="{{cliente.cpf}}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div><!-- card-body -->
+    </section><!-- card-->
+
+   
+{% endblock %}
