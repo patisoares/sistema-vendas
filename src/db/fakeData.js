@@ -43,4 +43,24 @@ let formaDePagamento = [
         descricao:"Cartão de Crédito"
     }
 ]
-module.exports = {categoriasDeProduto,clientes, formaDePagamento}
+let usuarios = [
+    {
+        id:1,
+        nome:"João",
+        email:"xxxx@dd.dd",
+        senha:"11111"
+    },
+    {
+        id:2,
+        nome:"Maria",
+        email:"xyyy@dd.dd",
+        senha:"33333"
+    },
+    {
+        id:3,
+        nome:"Caio",
+        email:"kkkk@dd.dd",
+        senha:"1222"
+    }
+]
+module.exports = {categoriasDeProduto,clientes, formaDePagamento,usuarios}

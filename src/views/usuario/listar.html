@@ -1,0 +1,38 @@
+{% extends "template.html" %}
+
+{% block main %}
+
+    <section class="card m-5">
+        <header class="card-header">
+           <h3>Usuário</h3> 
+        </header>
+        <div class="card-body ">
+            <a href="/usuario/adicionar" class="btn btn-primary">Adicionar</a>
+            <table class="table">
+                <thead>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th>Ações</th>
+                </thead>
+                <tbody>
+                   {% for usuario in usuarios %}
+                        <tr>
+                            <td>{{ usuario.id }}</td>
+                            <td>{{ usuario.nome }}</td>
+                            <td>{{ usuario.email }}</td>
+                            <td>{{ usuario.senha }}</td>
+                            <td>
+                                <a href="#">Editar</a>
+                                <a href="#">Excluir</a>
+                            </td>
+                   </tr>
+
+                   {% endfor%}
+                </tbody>
+            </table>
+        </div> <!---card-body-->
+    </section>  <!----card-->
+
+{% endblock %}

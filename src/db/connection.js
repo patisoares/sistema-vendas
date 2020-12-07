@@ -8,4 +8,4 @@ const db = new Pool({
     port:5432
 })
 db.connect()
-module.exports = db
+module.exports = {db}
