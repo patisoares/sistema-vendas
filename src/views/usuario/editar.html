@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+
+{% block main %}
+
+    <section class="card m-5">
+        <header class="card-header">
+           <h3>Adicionar Usuário</h3> 
+        </header>
+        <div class="card-body ">
+           <form action="/usuario/atualizar" method="post">
+                <input type="hidden" name="id" value={{usuario.id}}>
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="nome" value="{{usuario.nome}}" class="form-control">
+                    <label>Email</label>
+                    <input type="text" name="email" value="{{usuario.email}}"cclass="form-control">
+                    <label>Senha</label>
+                    <input type="text" name="senha" value="{{usuario.senha}}" class="form-control">
+                </div>
+                <button  type="submit" class="btn btn-primary">Salvar</button>
+           </form>
+        </div> <!---card-body-->
+    </section>  <!----card-->
+
+{% endblock %}
