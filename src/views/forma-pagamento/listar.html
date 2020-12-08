@@ -20,8 +20,8 @@
                     <td>{{ pagamento.id}}</td>
                     <td>{{ pagamento.descricao}}</td>
                     <td>
-                        <a href="#">Editar</a>
-                        <a href="#">Excluir</a>
+                        <a href="/forma-pagamento/editar/{{pagamento.id}}">Editar</a>
+                        <a href="/forma-pagamento/excluir/{{pagamento.id}}">Excluir</a>
                     </td>
                 </tr>
             {% endfor %}
