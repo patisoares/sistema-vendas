@@ -1,8 +1,10 @@
 const express = require('express')
 const nunjucks = require('nunjucks')
 const clienteController = require('./src/controllers/ClienteController')
+const categoriaProdutoController = require('./src/controllers/CategoriaProdutoController')
+const formaPagamentoController = require('./src/controllers/FormaPagamentoController')
+const usuarioController = require('./src/controllers/UsuarioController')
 
-const {db}= require('./src/db/connection')
 
 const app = express()
 const port = 3000
@@ -23,29 +25,12 @@ app.get('/',(req,res)=>{
 
 
 //ROTAS PARA CATEGORIA DE PRODUTOS
-app.get('/categoria-produto/listar',(req,res)=>{
-  db.query('SELECT * FROM categoria_produto',(err,result)=>{
-    if (err){
-      console.log(`Houve um erro ao listar as formas de pagemnto: ${err}`)
-    }
-  res.render('categoria-produto/listar',{categorias:result.rows})
-  })
-})
-
-app.get('/categoria-produto/adicionar',(req,res)=>{
-  res.render('categoria-produto/adicionar')
-})
-
-app.post('/categoria-produto/salvar',(req,res)=>{
-  const query = {
-    text: 'INSERT INTO categoria_produto(descricao) VALUES ($1)',
-    values:[req.body.descricao]
-  }
-  db.query(query,(err, result)=>{
-    console.log(result)
-  })
-  res.redirect('/categoria-produto/listar')
-})
+app.get('/categoria-produto/listar',categoriaProdutoController.index)
+app.get('/categoria-produto/adicionar',categoriaProdutoController.create)
+app.post('/categoria-produto/salvar',categoriaProdutoController.store)
+app.get('/categoria-produto/editar/:id',categoriaProdutoController.edit)
+app.post('/categoria-produto/atualizar',categoriaProdutoController.update)
+app.get('/categoria-produto/excluir/:id',categoriaProdutoController.delete)
 
 
 //ROTAS PARA CADASTRO DE CLIENTES
@@ -59,57 +44,21 @@ app.get('/cliente/excluir/:id', clienteController.delete)
 
 
 //ROTAS PARA FORMA DE PAGAMENTO
-app.get('/forma-pagamento/listar',(req,res)=>{
-  db.query('SELECT * FROM forma_pagamento',(err,result)=>{
-    if (err){
-      console.log(`Houve um erro ao listar as formas de pagemnto: ${err}`)
-    }
-   res.render('forma-pagamento/listar',{pagamentos:result.rows})
-  })
-
-})
-app.get('/forma-pagamento/adicionar',(req,res)=>{
-    res.render('forma-pagamento/adicionar')
-})
-
-app.post('/forma-pagamento/salvar',(req,res)=>{
-  const query = {
-    text: 'INSERT INTO forma_pagamento(descricao) VALUES ($1)',
-    values:[req.body.descricao]
-  }
-  db.query(query,(err, result)=>{
-    console.log(result)
-  })
-  res.redirect('/forma-pagamento/listar')
-})
-
+app.get('/forma-pagamento/listar',formaPagamentoController.index)
+app.get('/forma-pagamento/adicionar',formaPagamentoController.create)
+app.post('/forma-pagamento/salvar',formaPagamentoController.store)
+app.get('/forma-pagamento/editar/:id',formaPagamentoController.edit)
+app.post('/forma-pagamento/atualizar',formaPagamentoController.update)
+app.get('/forma-pagamento/excluir/:id',formaPagamentoController.delete)
 
 
 //ROTAS PARA USUARIO
-app.get('/usuario/listar',(req,res)=>{
-  db.query('SELECT * FROM usuario',(err,result)=>{
-    if (err){
-      console.log(`Houve um erro ao listar os usuários: ${err}`)
-    }
-    res.render('usuario/listar',{usuarios:result.rows})
-  })
-
-})
-
-app.get('/usuario/adicionar',(req,res)=>{
-    res.render('usuario/adicionar')
-})
-
-app.post('/usuario/salvar',(req,res)=>{
-const query = {
-  text: 'INSERT INTO usuario(nome, email,senha) VALUES ($1,$2,$3)',
-  values:[req.body.nome,req.body.email,req.body.senha]
-}
-db.query(query,(err, result)=>{
-  console.log(result)
-})
-res.redirect('/usuario/listar')
-})
+app.get('/usuario/listar',usuarioController.index)
+app.get('/usuario/adicionar',usuarioController.create)
+app.post('/usuario/salvar',usuarioController.store)
+app.get('/usuario/editar/:id',usuarioController.edit)
+app.post('/usuario/atualizar',usuarioController.update)
+app.get('/usuario/excluir/:id',usuarioController.delete)
 
 
 app.listen(port, () => {
